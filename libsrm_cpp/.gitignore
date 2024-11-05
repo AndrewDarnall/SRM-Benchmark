@@ -1,0 +1,5 @@
+Executables/
+build/*.cmake
+build/*.txt
+build/CMakeFiles
+build/Makefile
