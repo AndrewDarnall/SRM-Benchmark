@@ -44,7 +44,8 @@ class SRM:
         """
 
         self.shape = image.shape
-        (h, w) = self.shape
+        h = self.shape[0]
+        w = self.shape[1]
         self.size = w * h
         self.image = np_float32(image.reshape(self.size, -1))
         self.parent = np_arange(self.size)
@@ -77,7 +78,9 @@ class SRM:
 
     def make_edge_pairs_list(self):
         """Creates a list of the 4-connected pairs"""
-        (h, w) = self.shape
+        h = self.shape[0]
+        w = self.shape[1]
+
         pairs = []
 
         for i in range(0, h):
