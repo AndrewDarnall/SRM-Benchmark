@@ -7,6 +7,8 @@
 
 #include <opencv2/opencv.hpp>
 
+#include "srm.cpp"
+
 int main(int argc, char** argv) {
 
     if (argc != 5) {
@@ -27,6 +29,9 @@ int main(int argc, char** argv) {
     "Merging Algorithm on " << argv[1] << std::endl;
 
     // Algorithm methods ...
+    SRM* srm = new SRM(atoi(argv[2]), atoi(argv[3]), atof(argv[4]));
+    srm->run(img);
+    
 
     std::cout << " == Finished Running the" << 
     " SRM Algorithm == " << std::endl;
