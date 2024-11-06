@@ -35,8 +35,9 @@ void SRM::run(cv::Mat& img) {
     this->imgSize = img.rows * img.cols;
     this->minSize = this->minSize * static_cast<float>(this->imgSize);
     
-    cv::Mat floatImage;
+    cv::Mat floatImage, reshapedImage;
     img.convertTo(floatImage, CV_32F);
+    reshapedImage = floatImage.reshape(1, img.rows * img.cols);
 
 
     std::vector<int> rank(this->imgSize, 1);
@@ -51,11 +52,8 @@ void SRM::run(cv::Mat& img) {
 
     // End of initialization block
 
-    std::vector<std::pair<int, int>> edgeList = this->makeEdgePairList(floatImage, static_cast<int>(img.rows), static_cast<int>(img.cols));
+    std::vector<std::pair<int, int>> edgeList = this->makeEdgePairList(reshapedImage, static_cast<int>(img.rows), static_cast<int>(img.cols));
 
-    for (const auto& pair : edgeList) {
-        std::cout << "(" << pair.first << "," << pair.second << ")\t" << std::endl;
-    }
 }
 
 
@@ -91,31 +89,24 @@ std::vector<std::pair<int, int>>& SRM::makeEdgePairList(const cv::Mat& img, int 
  * 
  */
 void SRM::sortEdgePairs(const cv::Mat& image, std::vector<std::pair<int,int>>& edgeList) {
-        
-        //// ---- TO TEST
+    
 
-
-        // Define the sorting function using a lambda expression
         auto diff = [this, &image](const std::pair<int, int>& p) {
+            
             int r1 = p.first;
             int r2 = p.second;
-
-            // Calculate the maximum absolute difference between the rows r1 and r2
+            
             cv::Mat diffMat;
-            cv::absdiff(image.row(r1), image.row(r2), diffMat);  // Compute absolute difference
+            cv::absdiff(image.row(r1), image.row(r2), diffMat);
 
-            // Find the maximum difference in the resulting difference matrix
-            return *std::max_element(diffMat.begin<uchar>(), diffMat.end<uchar>());
+            return static_cast<int>(*std::max_element(diffMat.begin<uchar>(), diffMat.end<uchar>()));
         };
 
-        // Actually sort the Array using the lambda expression as the comparator
         std::sort(edgeList.begin(), edgeList.end(),
             [&diff](const std::pair<int, int>& a, const std::pair<int, int>& b) {
                 return diff(a) < diff(b);
             });
 
-
-        /////// ---- TO TEST
 }
 
 /**
