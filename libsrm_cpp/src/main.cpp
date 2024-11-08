@@ -28,10 +28,15 @@ int main(int argc, char** argv) {
     std::cout << " -- Running the Statistical Region " <<
     "Merging Algorithm on " << argv[1] << std::endl;
 
-    // Algorithm methods ...
-    SRM* srm = new SRM(atoi(argv[2]), atoi(argv[3]), atof(argv[4]));
-    srm->run(img);
     
+
+    // ================================================= //
+    SRM* srm = new SRM(atoi(argv[2]), atoi(argv[3]), atof(argv[4]), img);
+    srm->run();
+    srm->saveImage(argv[1]);
+    // ================================================= //
+
+
 
     std::cout << " == Finished Running the" << 
     " SRM Algorithm == " << std::endl;

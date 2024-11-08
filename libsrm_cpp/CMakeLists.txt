@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.5)
 project(libsrm_cpp)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -ffloat-store")
 
 set(MAIN_SOURCE_FILE src/main.cpp)
-file(GLOB_RECURSE LIBRARY_SOURCE_FILES src/srm.cpp)
+file(GLOB_RECURSE LIBRARY_SOURCE_FILES src/srm.cpp src/utils.cpp)
 
 include_directories(include/libsrm_cpp)
 

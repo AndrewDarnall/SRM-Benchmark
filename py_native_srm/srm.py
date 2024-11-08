@@ -64,11 +64,11 @@ class SRM:
             if parent_a != parent_b and self.predicate(parent_a, parent_b):
                 self.merge(parent_a, parent_b)
 
-        if self.max_regions > 0:
-            self.merge_occlusions()
+        # if self.max_regions > 0:
+        #     self.merge_occlusions()
 
-        if self.min_size > 0:
-            self.merge_smaller_regions()
+        # if self.min_size > 0:
+        #     self.merge_smaller_regions()
 
         for i in range(self.size):
             color = self.image[self.get_parent(i)]
@@ -107,10 +107,12 @@ class SRM:
 
     def evaluate_predicate(self, parent_a):
         """Predicate evaluation (based on the relaxed formula in the paper)"""
-        return (self.g**2 / float(2 * self.q * self.rank[parent_a])) * (
-            min(self.g, self.rank[parent_a]) *
-            log(self.rank[parent_a] + 1) + self.delta
-        )
+        return (
+            (self.g**2 / float(2 * self.q * self.rank[parent_a])) *
+            (min(self.g, self.rank[parent_a])) *
+            (log(self.rank[parent_a] + 1)) + 
+            self.delta
+            )
 
     def predicate(self, parent_a, parent_b):
         """The P() predicate formula from the paper"""

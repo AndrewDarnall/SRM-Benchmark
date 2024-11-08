@@ -16,23 +16,34 @@ class SRM {
         
         int Q;
         int g;
-        float delta;
+        double delta;
         int imgSize;
-        float minSize;
+        double minSize;
         int maxRegions;
+        int imgRows;
+        int imgCols;
+        std::vector<int> rank;
+        std::vector<int> parent;
+        cv::Mat& img;
 
     public:
-        SRM(int, int, float);
+        SRM(int, int, double, cv::Mat&);
 
-        void run(cv::Mat&);
-        std::vector<std::pair<int, int>>& makeEdgePairList(const cv::Mat&, int, int);
-        void sortEdgePairs(const cv::Mat&, std::vector<std::pair<int, int>>&);
-        bool evaluatePredicate(int);
+        void run();
+        std::vector<std::pair<int, int>>& makeEdgePairList(int, int);
+        void sortEdgePairs(std::vector<std::pair<int, int>>&);
+        double evaluatePredicate(int);
+        bool predicate(int, int);
         void merge(int, int);
         int getParent(int);
         void mergeOcclusions();
         void mergeSmallerRegions();
         std::vector<int>& retrieveMaxParents();
+        void saveImage(const std::string&);
+
+        int getImageRows() const;
+        int getImageCols() const;
+        int getImageSize() const;
 
 
 };
