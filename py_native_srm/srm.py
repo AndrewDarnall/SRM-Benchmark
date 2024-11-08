@@ -64,8 +64,8 @@ class SRM:
             if parent_a != parent_b and self.predicate(parent_a, parent_b):
                 self.merge(parent_a, parent_b)
 
-        # if self.max_regions > 0:
-        #     self.merge_occlusions()
+        if self.max_regions > 0:
+            self.merge_occlusions()
 
         # if self.min_size > 0:
         #     self.merge_smaller_regions()

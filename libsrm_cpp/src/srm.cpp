@@ -70,10 +70,10 @@ void SRM::run() {
 
     }
 
-    // // 3) Check for occluded regions
-    // if (this->maxRegions > 0) {
-    //     this->mergeOcclusions();
-    // }
+    // 3) Check for occluded regions
+    if (this->maxRegions > 0) {
+        this->mergeOcclusions();
+    }
 
     // // 4) Check for smaller regions
     // if (this->minSize > 0) {
@@ -176,6 +176,7 @@ double SRM::evaluatePredicate(int parentA) {
  * 
  */
 void SRM::merge(int parentA, int parentB) {
+    
     int sum1 = this->rank[parentA];
     int sum2 = this->rank[parentB];
     
@@ -183,12 +184,12 @@ void SRM::merge(int parentA, int parentB) {
         (this->img.at<cv::Vec3f>(0, parentA) * sum1) + 
         (this->img.at<cv::Vec3f>(0, parentB) * sum2)
     ) / 
-    (static_cast<float>(sum1) + static_cast<float>(sum2));
+    (static_cast<double>(sum1) + static_cast<double>(sum2));
 
     if (sum1 < sum2) {
         int swap = parentA;
         parentA = parentB;
-        parentB = parentA;
+        parentB = swap;
     }
 
     this->parent[parentB] = parentA;
