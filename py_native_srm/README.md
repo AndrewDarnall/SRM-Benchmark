@@ -15,9 +15,9 @@ And the program will output, within the same directory, a file `Segmented_your_i
 # Algorithm in Action
 
 ### Reference Image
-![Reference Image](../assets/images/Reference-Image.png)
+![Reference Image](../assets/images/reference-image.jpeg)
 
 ### Segmented Image
-![Python Segmented Image](../assets/images/python-srm-output.png)
+![Python Segmented Image](../assets/images/python-srm-output.jpeg)
 
 ---
