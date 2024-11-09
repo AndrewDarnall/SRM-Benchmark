@@ -37,7 +37,7 @@ This repo is meant to contain a `benchmark`, each `directory` however contains a
 ```bash
 SRM-Benchmark
 ├── assets
-├── BSD-Data-Benchmark
+├── BSDS500-Benchmark
 ├── libsrm_cpp
 ├── libsrm_py
 └── libsrm_rust
