@@ -46,7 +46,7 @@ Every `directory` aside from the `assets` one, contains a specific implementatio
 
 ---
 
-## System Specification
+## System Specifications
 
 The `hardware` specs of the machine on which the benchmark was run are:
 
