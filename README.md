@@ -26,10 +26,41 @@ and then I measure the resource consumption of each implementation.
 
 ---
 
-## Project Structure
+#### Disclaimer
+
+This repo is meant to contain a `benchmark`, each `directory` however contains a standalone implementation.
 
 ---
 
-## Usage
+## Project Structure
+
+```bash
+SRM-Benchmark
+├── assets
+├── libsrm_cpp
+├── libsrm_rust
+└── libsrm_py
+```
+
+Every `directory` aside from the `assets` one, contains a specific implementation wich detailed `README.md` regarding the benchmark
+
+---
+
+## System Specification
+
+The `hardware` specs of the machine on which the benchmark was run are:
+
+```bash
+Model name:                           Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz
+CPU MHz:                              3998.428
+```
+
+The `software` specs are:
+
+```bash
+Operating System Information:
+Description:    Debian GNU/Linux 11 (bullseye)
+Release:        11
+```
 
 ---
