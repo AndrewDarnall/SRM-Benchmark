@@ -1,5 +1,3 @@
-include/libsrm_cpp/utils.hpp
-src/utils.cpp
 Executables/
 build/
 !build/.gitkeep

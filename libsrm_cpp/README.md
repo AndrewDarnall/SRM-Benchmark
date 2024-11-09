@@ -29,9 +29,18 @@ make
 4) Run on a sample image
 
 ```bash
-./Executables/main_exec ../imgs/Sample-Image.png 32 15 0.001
+./Executables/main_exec ../imgs/Sample-Image.jpeg 32 15 0.001
 ```
 
-And the program will output a `Segmented-Sample-Image.png`
+And the program will output a `Segmented-Sample-Image.jpeg`
+
+# Algorithm in Action
+
+### The Reference Image
+![Reference-Image](../assets/images/reference-image.jpeg)
+
+
+### Segmented Image
+![Segmented-Image-C++](../assets/images/cpp-srm-output.jpeg)
 
 ---
