@@ -37,12 +37,13 @@ This repo is meant to contain a `benchmark`, each `directory` however contains a
 ```bash
 SRM-Benchmark
 ├── assets
+├── BSD-Data-Benchmark
 ├── libsrm_cpp
-├── libsrm_rust
-└── libsrm_py
+├── libsrm_py
+└── libsrm_rust
 ```
 
-Every `directory` aside from the `assets` one, contains a specific implementation wich detailed `README.md` regarding the benchmark
+Every `directory` aside from the `assets` one, contains a specific implementation wich detailed `README.md` regarding the benchmark, and the `BSDS500-Benchmark` contains the benchmark on the `BSDS500` dataset.
 
 ---
 
