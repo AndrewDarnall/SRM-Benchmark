@@ -12,7 +12,7 @@ mod algorithms;
 use algorithms::srm::*;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    
+
     let cmdline_args: Vec<String> = env::args().collect();
 
     if cmdline_args.len() != 5 {

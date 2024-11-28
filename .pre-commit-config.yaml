@@ -24,6 +24,7 @@ repos:
       rev: 7.1.1
       hooks:
       -   id: flake8
+          args: ["--max-line-length", "80"]
           files: ^libsrm_py/.*py
 
   -   repo: https://github.com/PyCQA/pylint
@@ -42,16 +43,10 @@ repos:
         language: system
         files: ^libsrm_cpp/.*\.(cpp|h|hpp|c)$
 
-
   - repo: local
     hooks:
-      - id: rustfmt
-        name: Format Rust Code
-        entry: cargo fmt --all -- --check
+      - id: clang-tidy
+        name: Lint C++ Code with Clang-Tidy
+        entry: clang-tidy -checks=* -fix -quiet
         language: system
-        files: ^libsrm_rust/.*\.rs$
-      - id: clippy
-        name: Rust Linting with Clippy
-        entry: cargo clippy -- -D warnings
-        language: system
-        files: ^libsrm_rust/.*\.rs$
+        files: ^libsrm_cpp/.*\.(cpp|h|hpp|c)$

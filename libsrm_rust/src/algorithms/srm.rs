@@ -35,12 +35,12 @@ pub struct SRM<'a> {
 
 
 impl<'a> SRM<'a> {
-    
+
     pub fn new(q: i32, max_regions: i32, min_size: f32, img: &'a Mat) -> Result<Self, opencv::Error> {
-        
+
         let img_size: i32 = img.rows() * img.cols();
         let delta: f32 = f32::ln(6.0) + 2.0 * f32::ln(img_size as f32);
-        
+
         Ok(
             SRM {
                 q,
@@ -59,9 +59,9 @@ impl<'a> SRM<'a> {
         )
     }
 
-    
+
     pub fn run(&mut self) -> Result<(), Box<dyn std::error::Error>> {
-        
+
         let mut float_image = Mat::default();
         self.img.convert_to(&mut float_image, CV_32F, 1.0, 0.0)?;
         let reshaped_img = float_image.reshape_mut(3, self.img_size)?.try_clone()?;
@@ -75,7 +75,7 @@ impl<'a> SRM<'a> {
         for p in &edge_list {
             let parent_a = self.get_parent(p.0);
             let parent_b = self.get_parent(p.1);
-        
+
             if parent_a != parent_b && self.predicate(parent_a, parent_b) {
                 let _ = self.merge(parent_a, parent_b);
             }
@@ -161,7 +161,7 @@ impl<'a> SRM<'a> {
         pixel_a: &VecN<f32, 3>,
         pixel_b: &VecN<f32, 3>,
     ) -> VecN<f32, 3> {
-     
+
         VecN::<f32, 3>::from([
             pixel_a[0] - pixel_b[0],
             pixel_a[1] - pixel_b[1],
@@ -180,27 +180,27 @@ impl<'a> SRM<'a> {
 
     pub fn merge(&mut self, parent_a: i32, parent_b: i32) -> Result<(), Box<dyn std::error::Error>> {
 
-        
+
         let sum1 = self.rank[parent_a as usize];
         let sum2 = self.rank[parent_b as usize];
 
-        
+
         let pixel_a = *self.reshaped_image.at::<Vec3f>(parent_a)?;
         let pixel_b = *self.reshaped_image.at::<Vec3f>(parent_b)?;
 
-        
+
         let color_result = (pixel_a * (sum1 as f32) + pixel_b * (sum2 as f32)) / ((sum1 + sum2) as f32);
-        
+
         let (parent_a, parent_b) = if sum1 < sum2 {
             (parent_b, parent_a)
         } else {
             (parent_a, parent_b)
         };
 
-        
+
         self.parent[parent_b as usize] = parent_a;
         self.rank[parent_a as usize] += self.rank[parent_b as usize];
-        
+
         *self.reshaped_image.at_mut::<Vec3f>(parent_a)? = color_result;
 
         Ok(())
@@ -220,7 +220,7 @@ impl<'a> SRM<'a> {
     }
 
     pub fn merge_occlusions(&mut self) {
-        
+
         for i in 1..self.img_size {
             let r1 = self.get_parent(i);
             let r2 = self.get_parent(i - 1);
@@ -233,18 +233,18 @@ impl<'a> SRM<'a> {
 
     pub fn process_image(&mut self) -> Result<(), Box<dyn std::error::Error>> {
 
-        
+
         for i in 0..self.img_size {
-        
-            let parent_idx = self.get_parent(i);            
+
+            let parent_idx = self.get_parent(i);
             let color = self.reshaped_image.at::<Vec3f>(parent_idx)?;
-        
+
             *self.reshaped_image.at_mut::<Vec3f>(i)? = *color;
         }
-    
+
         Ok(())
     }
-    
+
 
     pub fn save_image(&self, abs_path: &str) -> Result<(), Box<dyn std::error::Error>> {
 
@@ -255,7 +255,7 @@ impl<'a> SRM<'a> {
 
         let file_name = format!("Segmented-{}", base_name);
         let params = Vector::<i32>::new();
-        
+
         imwrite(&file_name, &self.reshaped_image, &params)?;
 
 

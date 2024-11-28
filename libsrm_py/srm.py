@@ -17,6 +17,7 @@ from numpy import (
     unique as np_unique,
 )
 
+
 class SRM:
     """SRM Algorithm Driver Class"""
 
@@ -107,12 +108,9 @@ class SRM:
 
     def evaluate_predicate(self, parent_a):
         """Predicate evaluation (based on the relaxed formula in the paper)"""
-        return (
-            (self.g**2 / float(2 * self.q * self.rank[parent_a])) *
-            (min(self.g, self.rank[parent_a])) *
-            (log(self.rank[parent_a] + 1)) + 
-            self.delta
-            )
+        return (self.g**2 / float(2 * self.q * self.rank[parent_a])) * (
+            min(self.g, self.rank[parent_a])
+        ) * (log(self.rank[parent_a] + 1)) + self.delta
 
     def predicate(self, parent_a, parent_b):
         """The P() predicate formula from the paper"""
@@ -125,8 +123,9 @@ class SRM:
         """The merging procedure"""
         s1 = self.rank[parent_a]
         s2 = self.rank[parent_b]
-        color = (self.image[parent_a] * s1 +
-                 self.image[parent_b] * s2) / float(s1 + s2)
+        color = (self.image[parent_a] * s1 + self.image[parent_b] * s2) / float(
+            s1 + s2
+        )
 
         if s1 < s2:
             parent_a, parent_b = parent_b, parent_a
@@ -179,10 +178,10 @@ class SRM:
 
 if __name__ == "__main__":
 
-    FILE_NAME =     argv[1]
-    Q =             int(argv[2])
-    MAX_REGIONS =   int(argv[3])
-    MIN_SIZE =      float(argv[4])
+    FILE_NAME = argv[1]
+    Q = int(argv[2])
+    MAX_REGIONS = int(argv[3])
+    MIN_SIZE = float(argv[4])
 
     if MIN_SIZE > 1:
         MIN_SIZE = 1
