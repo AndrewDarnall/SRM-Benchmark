@@ -5,7 +5,7 @@
 
 ---
 
-The following reposiroty contains a benchmark which compares different implementations of the [Statistical Region Merging](https://ieeexplore.ieee.org/document/1335450) algorithm.
+The following reposiroty contains a benchmark which compares different implementations of the [Statistical Region Merging](https://ieeexplore.ieee.org/document/1335450) algorithm. a
 
 <br>
 <br>
