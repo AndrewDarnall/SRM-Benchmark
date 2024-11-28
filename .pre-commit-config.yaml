@@ -1,0 +1,57 @@
+repos:
+
+  -   repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.5.0
+      hooks:
+      -   id: check-yaml
+      -   id: end-of-file-fixer
+      -   id: trailing-whitespace
+
+  -   repo: https://github.com/hhatto/autopep8
+      rev: v2.0.4
+      hooks:
+      -   id: autopep8
+          # files: ^libsrm_py/.*\.py$
+
+  -   repo: https://github.com/psf/black
+      rev: 22.10.0
+      hooks:
+      -   id: black
+          args: ["--line-length", "80"]
+          # files: ^libsrm_py/.*\.py$
+
+  -   repo: https://github.com/pycqa/flake8
+      rev: 7.1.1
+      hooks:
+      -   id: flake8
+          # files: ^libsrm_py/.*\.py$
+
+  -   repo: https://github.com/PyCQA/pylint
+      rev: v3.3.1
+      hooks:
+      -   id: pylint
+          additional_dependencies: [pylint]
+          # files: ^libsrm_py/.*\.py$
+
+
+  - repo: local
+    hooks:
+      - id: clang-format
+        name: Format C++ Code
+        entry: clang-format -i
+        language: system
+        files: ^libsrm_cpp/.*\.(cpp|h|hpp|c)$
+
+
+  - repo: local
+    hooks:
+      - id: rustfmt
+        name: Format Rust Code
+        entry: cargo fmt --all -- --check
+        language: system
+        files: ^libsrm_rust/.*\.rs$
+      - id: clippy
+        name: Rust Linting with Clippy
+        entry: cargo clippy -- -D warnings
+        language: system
+        files: ^libsrm_rust/.*\.rs$
