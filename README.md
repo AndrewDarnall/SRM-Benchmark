@@ -1,5 +1,10 @@
 # Statistical Region Merging Benchmark
 
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Build Status](https://github.com/AndrewDarnall/XML-Editing-Tool/actions/workflows/lint.yml/badge.svg)
+
+---
+
 The following reposiroty contains a benchmark which compares different implementations of the [Statistical Region Merging](https://ieeexplore.ieee.org/document/1335450) algorithm.
 
 <br>
