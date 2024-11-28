@@ -1,7 +1,7 @@
 # Statistical Region Merging Benchmark
 
 The following reposiroty contains a benchmark which compares different implementations of the [Statistical Region Merging](https://ieeexplore.ieee.org/document/1335450) algorithm.
-<
+
 <br>
 <br>
 Given that many image processing and computer vision algorithms are frequently utilized in their 'Pythonic' form, which introduces a notable performance overhead, implementing the algorithm in a highly efficient and fast programming language like `C++` was an obvious choice. However, considering the well-known challenges associated with memory management in `C++`, implementing the algorithm in the `Rust` programming language presents a compelling alternative, as it offers both high performance and strong memory safety guarantees.
