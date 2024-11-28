@@ -15,17 +15,17 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         compiler: [g++, clang++, msvc]
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up C++ build environment
+      - name: Set up C++ build environment (Ubuntu)
         if: matrix.os == 'ubuntu-latest'
         run: sudo apt-get install -y libopencv-dev
-        if: matrix.os == 'macos-latest'matrix.os == 'macos-latest'
-        run: brew install opencv
 
+      - name: Set up C++ build environment (macOS)
+        if: matrix.os == 'macos-latest'
+        run: brew install opencv
 
       - name: Build C++ project
         run: |
@@ -34,8 +34,10 @@ jobs:
           cd build
           cmake ..
           make
+
       - name: Test C++ executable
         run: ./build/SRM-Benchmark ./imgs/Sample-Image.jpeg 32 15 0.001
+
       - name: Prepare C++ executable for release
         if: success()
         run: |
@@ -49,18 +51,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.10'
+
       - name: Install dependencies
         run: |
           cd ./libsrm_py
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
+
       - name: Test Python project
         run: |
           python srm.py ./imgs/Sample-Image.jpeg 32 15 0.001
+
       - name: Prepare Python output for release
         if: success()
         run: |
@@ -74,13 +80,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Set up Rust
-      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+
       - name: Build and test Rust project
         run: |
           cd libsrm_rust
           cargo build --release
           cargo run ./imgs/Sample-Image 32 15 0.001
+
       - name: Prepare Rust output for release
         if: success()
         run: |
@@ -92,6 +101,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Create a release
         id: create_release
         uses: actions/create-release@v1
@@ -103,7 +113,7 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Upload C++ executable
         if: success()
         uses: actions/upload-release-asset@v1
