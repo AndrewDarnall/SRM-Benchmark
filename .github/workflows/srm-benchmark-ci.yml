@@ -2,19 +2,19 @@ name: SRM-Benchmark CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
+
   build-cpp:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         compiler: [g++, clang++, msvc]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -58,7 +58,6 @@ jobs:
         if: success()
         run: |
           cp ./libsrm_py/srm.py ./SRM-Benchmark-${{ matrix.os }}-python
-        # Store Python output to upload later
 
   build-rust:
     runs-on: ${{ matrix.os }}
@@ -78,7 +77,6 @@ jobs:
         if: success()
         run: |
           cp ./target/release/SRM-Benchmark ./SRM-Benchmark-${{ matrix.os }}-rust
-        # Store Rust executable to upload later
 
   create-release:
     needs: [build-cpp, build-python, build-rust]
