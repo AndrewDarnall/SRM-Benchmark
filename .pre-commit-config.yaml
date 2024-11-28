@@ -11,27 +11,27 @@ repos:
       rev: v2.0.4
       hooks:
       -   id: autopep8
-          # files: ^libsrm_py/.*\.py$
+          files: ^libsrm_py/.*py
 
   -   repo: https://github.com/psf/black
       rev: 22.10.0
       hooks:
       -   id: black
           args: ["--line-length", "80"]
-          # files: ^libsrm_py/.*\.py$
+          files: ^libsrm_py/.*py
 
   -   repo: https://github.com/pycqa/flake8
       rev: 7.1.1
       hooks:
       -   id: flake8
-          # files: ^libsrm_py/.*\.py$
+          files: ^libsrm_py/.*py
 
   -   repo: https://github.com/PyCQA/pylint
       rev: v3.3.1
       hooks:
       -   id: pylint
           additional_dependencies: [pylint]
-          # files: ^libsrm_py/.*\.py$
+          files: ^libsrm_py/.*py
 
 
   - repo: local
