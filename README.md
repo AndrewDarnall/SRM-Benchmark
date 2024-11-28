@@ -1,7 +1,7 @@
 # Statistical Region Merging Benchmark
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
-![Build Status](https://github.com/AndrewDarnall/XML-Editing-Tool/actions/workflows/lint.yml/badge.svg)
+![Build Release Status](https://github.com/AndrewDarnall/SRM-Benchmark/actions/workflows/srm-benchmark-ci.yml/badge.svg)
 
 ---
 
