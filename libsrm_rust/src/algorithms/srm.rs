@@ -40,6 +40,7 @@ impl<'a> SRM<'a> {
 
         let img_size: i32 = img.rows() * img.cols();
         let delta: f32 = f32::ln(6.0) + 2.0 * f32::ln(img_size as f32);
+        let min_size: f32 = min_size * img_size as f32;
 
         Ok(
             SRM {
