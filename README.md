@@ -19,15 +19,17 @@ and then I measure the resource consumption of each implementation.
 
 ## Requirements
 
-| Component | Version |
-|-----------|---------|
-| OpenCV    | `4.5.1` |
-| C++       | `10.2.1`|
-| Rust      | `1.81.0`|
-| Python    | `3.12.4`|
-| pip       | `24.2`  |
-| CMake     | `3.18.4`|
-| Make      | `4.3`   |
+| Component | Version    |
+|-----------|------------|
+| OpenCV    | `4.5.1`    |
+| C++       | `10.2.1`   |
+| Clang     | `14.0.6`   |
+| Clang-Dev | `14.0-55.7`|
+| Rust      | `1.81.0`   |
+| Python    | `3.12.4`   |
+| pip       | `24.2`     |
+| CMake     | `3.18.4`   |
+| Make      | `4.3`      |
 
 ---
 
