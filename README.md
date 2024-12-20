@@ -52,6 +52,9 @@ SRM-Benchmark
 
 Every `directory` aside from the `assets` one, contains a specific implementation wich detailed `README.md` regarding the benchmark, and the `BSDS500-Benchmark` contains the benchmark on the `BSDS500` dataset.
 
+
+The `BSDS500` dataset can be found [here](https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/).
+
 ---
 
 ## System Specifications
