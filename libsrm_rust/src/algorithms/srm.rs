@@ -109,7 +109,7 @@ impl<'a> SRM<'a> {
 
         for i in 0..rows {
             for j in 0..cols {
-                let index = i * rows + j;
+                let index = i * cols + j;
                 // Add vertical edge (index -> index + cols)
                 if i != rows - 1 {
                     edge_list.push((index, index + cols));
