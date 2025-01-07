@@ -1,1 +1,4 @@
 .vscode
+/BSDS500-Benchmark/images
+/BSDS500-Benchmark/.ipynb_checkpoints
+/BSDS500-Benchmark/bsds500-benchmark
